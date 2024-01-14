@@ -20,7 +20,7 @@ class ForRegstrationSoha(ModelSerializer):
 class TestSerializer(ModelSerializer):
     class Meta:
         model = TestModel
-        fields = '__all__'
+        fields = ('id', 'test_name', 'test', 'a', 'b', 'c', 'd', 'created_at')
 
 class LoginWithToken(TokenObtainPairSerializer):
 
@@ -31,6 +31,10 @@ class LoginWithToken(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.username
         return token
+
+
+
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -70,3 +74,4 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+

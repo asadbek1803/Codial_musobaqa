@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-
+      # required for serving swagger ui's css/js files
+    'drf_yasg',
     # Local
     'accounts',
     'api'

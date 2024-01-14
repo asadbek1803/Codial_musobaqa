@@ -45,25 +45,18 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
+from api.models import Sohalar
 class Account(AbstractBaseUser):
-    sohalar = (
-        ('IT', 'IT'),
-        ('Ma’muriy xodimlar', 'Ma’muriy xodimlar'),
-        ('Avtomobil biznesi', 'Avtomobil biznesi'),
-        ('Buxgalteriya, boshqaruv hisobi, tashkilot hisoblari', 'Buxgalteriya, boshqaruv hisobi, tashkilot hisoblari'),
-        ('Xavfsizlik', 'Xavfsizlik'),
-        ('O’rnatish va xizmat ko’rsatish', 'O’rnatish va xizmat ko’rsatish'),
-        ('San’at, o’yin-kulgi, mass-media', 'San’at, o’yin-kulgi, mass-media'),
-        ('Ilm-fan, ta’lim', 'Ilm-fan, ta’lim'),
-        ('Tibbiyot, farmatsevtika', 'Tibbiyot, farmatsevtika')
 
-    )
+
+    SOHA_CHOICES = [(soha.name, soha.name) for soha in Sohalar.objects.all()]
+
     first_name      =models.CharField(max_length=50)
     last_name       =models.CharField(max_length=50)
     username        =models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
     phone_number    =models.CharField(max_length=50)
-    soha = models.CharField(max_length=110, choices=sohalar)
+    soha = models.CharField(max_length=110, choices=SOHA_CHOICES)
 
     # required
 
@@ -71,7 +64,7 @@ class Account(AbstractBaseUser):
     last_login = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

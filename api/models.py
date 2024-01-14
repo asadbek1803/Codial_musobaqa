@@ -9,6 +9,7 @@ class Sohalar(models.Model):
     def __str__(self):
         return self.name
 
+
     class Meta:
         verbose_name_plural = "Sohalar"
 
@@ -34,6 +35,8 @@ class TestModel(models.Model):
 
     def __str__(self):
         return self.test_name
+
+
 
     class Meta:
         ordering = ('-created_at', )
